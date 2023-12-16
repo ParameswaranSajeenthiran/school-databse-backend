@@ -28,42 +28,114 @@ export async function getStudent(studentID){
 
 
 export async function insertNewStudent(studentData){
+    console.log("Student" ,studentData)
 
-    const query =
-      'INSERT INTO students (name, gender, dob, admissionNo, religion, grade, division, email, telNumber, mobileNumber, whatsapp, parentIsDivorced, birthCertificateNo, birthregistryOffice, noOfSibilings, noOfSibilingWhoStudy, siblingsStudentId, withWhom, fatherId, motherId, guardianId, Image, medicalId, previousSchool, homeId, transportId, scholarshipId, admissionDate, createdAt, updatedAt) ' +
-      'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())';
-
-
-    const [rows, fields] = await pool.execute(query, [
-        studentData.name,
-        studentData.gender,
-        studentData.dob,
+    // const query ='INSERT INTO students (fullName, gender, dob, admissionNo, religion, grade,  email, telephone, mobileNumber, whatsapp, parentIsDivorced, birthCertificateNo, birthregistryOffice, noOfSibilings, noOfSibilingWhoStudy, siblingsStudentId, withWhom, fatherId, motherId, guardianId, Image, medicalId, previousSchool, homeId, transportId, scholarshipId, admissionDate, createdAt, updatedAt ,permenantAdress,GSName,divisionNo ,divisionalSecretariat ,residentialAdress,viberNumber,isFartherAlive ,isMotherAlive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW(), ?, ?, ?, ?, ?, ?, ?, ?)';
+console.log([
+    studentData.fullName,
+        null,
+        null,
         studentData.admissionNo,
-        studentData.religion,
+        null,
         studentData.grade,
-        studentData.division,
+        studentData.divisionNo,
         studentData.email,
-        studentData.telNumber,
+        studentData.telephone,
         studentData.mobileNumber,
-        studentData.whatsapp,
+        studentData.whatsappNumber,
         studentData.parentIsDivorced,
-        studentData.birthCertificateNo,
-        studentData.birthregistryOffice,
+        null,        
+        null,
         studentData.noOfSibilings,
         studentData.noOfSibilingWhoStudy,
-        studentData.siblingsStudentId,
-        studentData.withWhom,
-        studentData.fatherId,
-        studentData.motherId,
-        studentData.guardianId,
-        studentData.Image,
-        studentData.medicalId,
-        studentData.previousSchool,
-        studentData.homeId,
-        studentData.transportId,
-        studentData.scholarshipId,
-        studentData.admissionDate
-      ]);
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+  ].length)
+
+    // const [rows, fields] = await pool.query(query, [
+    //     studentData.fullName,
+    //     null,
+    //     null,
+    //     studentData.admissionNo,
+    //     null,
+    //     studentData.grade,
+    //     studentData.divisionNo,
+    //     studentData.email,
+    //     studentData.telephone,
+    //     studentData.mobileNumber,
+    //     studentData.whatsappNumber,
+    //     studentData.parentIsDivorced,
+    //     null,        
+    //     null,
+    //     studentData.noOfSibilings,
+    //     studentData.noOfSibilingWhoStudy,
+    //     null,
+    //     null,
+    //     null,
+    //     null,
+    //     null,
+    //     null,
+    //     null,
+    //     null,
+    //     null,
+    //     null,
+    //     null,
+    //     null
+    //   ]);
+
+    const query = 'INSERT INTO students (fullName, gender, dob, admissionNo, religion, grade, email, telephone, mobileNumber, whatsapp, parentIsDivorced, birthCertificateNo, birthregistryOffice, noOfSibilings, noOfSibilingWhoStudy, siblingsStudentId, withWhom, fatherId, motherId, guardianId, Image, medicalId, previousSchool, homeId, transportId, scholarshipId, admissionDate, createdAt, updatedAt, permenantAdress, GSName, divisionNo, divisionalSecretariat, residentialAdress, viberNumber, isFartherAlive, isMotherAlive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,  NOW(), NOW(), ?, ?, ?, ?, ?, ?, ?, ?)';
+
+const [rows, fields] = await pool.query(query, [
+    studentData.fullName,
+    null,
+    null,
+    studentData.admissionNo,
+    null,
+    studentData.grade,
+    studentData.email,
+    studentData.telephone,
+    studentData.mobileNumber,
+    studentData.whatsappNumber,
+    studentData.parentIsDivorced=="on"?1:0,,
+    null,
+    null,
+    studentData.noOfSibilings,
+    studentData.noOfSibilingWhoStudy,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+]);
+
      return rows.insertId;
 }
 
