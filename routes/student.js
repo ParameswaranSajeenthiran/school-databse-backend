@@ -1,14 +1,13 @@
 
 import express from "express";
-import { getAllStudents, insertNewStudent } from "../services/studentDatabse.js";
+import { getAllStudents, getStudent, insertNewStudent, updateStudent } from "../services/studentDatabse.js";
 
 var router = express.Router();
 
 
 router.get('/', async (req, res) => {
     console.log("request", req);
-    console.log(req.query.currentDate);
-    const result = await getAllStudents(req.query.currentDate);
+    const result = await getAllStudents();
 
     res.send(result[0]);
 });
@@ -18,7 +17,7 @@ router.post('/', async (req, res) => {
     console.log("req body",  req.body);
     const result = await insertNewStudent(req.body.studentData);
 
-    res.send(result[0]);
+    res.send(result);
 });
 
 
@@ -39,7 +38,7 @@ router.put('/:studentID', async (req, res) => {
     console.log("req body",  req.body);
     const result = await updateStudent(req.params.studentID, req.body.studentData);
 
-    res.send(result[0]);
+    res.send(result);
 }
 );
 

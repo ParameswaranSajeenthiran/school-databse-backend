@@ -109,6 +109,66 @@ CREATE TABLE `staffs` (
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `documents`
+--
+
+  CREATE TABLE  `documents` (
+  `id` int  AUTO_INCREMENT,
+ `birthregistryOffice` varchar(255) DEFAULT NULL,
+  `birthCertificateNo` varchar(255) DEFAULT NULL,
+  `grade5ScholarshipIndexNo` varchar(255) DEFAULT NULL,
+  `achievedmarks` varchar(255) DEFAULT NULL,
+  `studentId` int(11) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (studentId) REFERENCES students(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `OLResults`
+--
+
+
+CREATE TABLE `OLResults` (
+  `id` int AUTO_INCREMENT, ,
+  `studentId` int(11) NOT NULL,
+  `year` varchar(255) NOT NULL,
+  `indexNumber` varchar(255) NOT NULL,
+  `grade` varchar(255) NOT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (studentId) REFERENCES students(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+--
+-- Table structure for table `ALResults`
+
+--
+
+CREATE TABLE `ALResults` (
+  `id` int(11) NOT NULL,
+  `studentId` int(11) NOT NULL,
+  `year` varchar(255) NOT NULL,
+  `indexNumber` varchar(255) NOT NULL,
+  `grade` varchar(255) NOT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 -- --------------------------------------------------------
 
 --
