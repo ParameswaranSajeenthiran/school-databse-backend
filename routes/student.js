@@ -1,6 +1,7 @@
 
 import express from "express";
 import { getAllStudents, getStudent, insertNewStudent, updateStudent } from "../services/studentDatabse.js";
+import { _insertBulkStudents } from "../controllers/student.js";
 
 var router = express.Router();
 
@@ -41,6 +42,8 @@ router.put('/:studentID', async (req, res) => {
     res.send(result);
 }
 );
+
+router.post('/import' , _insertBulkStudents)
 
 
 

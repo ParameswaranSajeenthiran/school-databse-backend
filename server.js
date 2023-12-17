@@ -8,6 +8,7 @@ import medicalRouter from './routes/medicalRecords.js'
 import cookieParser from "cookie-parser";
 import cors from 'cors';
 import documentsRouter from './routes/documents.js';
+import familyRouter from './routes/family.js';
 
 
 
@@ -21,7 +22,7 @@ app.use(cors());
 
 app.use('/student', studentRouter);
 app.use('/document', documentsRouter);
-
+app.use('family', familyRouter);
 app.use('/medical', medicalRouter);
 app.use('/subject', subject);
 

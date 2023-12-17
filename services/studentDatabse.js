@@ -185,3 +185,65 @@ const [updateRows, updateFields] = await pool.query(updateQuery, [
 
 }
 
+function generateQueryForBulkInsertOfStudents(studentData) {
+  let query = 'INSERT INTO students (nameWithInitials, nameIdentifiedByInitials ,fullName, gender, dob, admissionNo, religion, grade, email, telephone, mobileNumber, whatsapp, parentIsDivorced, birthCertificateNo, birthregistryOffice, noOfSibilings, noOfSibilingWhoStudy, siblingsStudentId, withWhom, fatherId, motherId, guardianId, Image, medicalId, previousSchool, homeId, transportId, scholarshipId, admissionDate, createdAt, updatedAt, permenantAdress, GSName, divisionNo, divisionalSecretariat, residentialAdress, viberNumber, isFartherAlive, isMotherAlive) VALUES ';
+  let values = [];
+
+  studentData.forEach((student, index) => {
+      query += `(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,  NOW(), NOW(), ?, ?, ?, ?, ?, ?, ?, ?)`;
+      values.push(
+       
+        student.nameWithInitials || null,
+        student.nameIdentifiedByInitials || null,
+        student.fullName || null,
+        student.gender || null,
+        student.dob || null,
+        student.admissionNo || null,
+        student.religion || null,
+        student.grade || null,
+        student.email || null,
+        student.telephone || null,
+        student.mobileNumber || null,
+        student.whatsapp || null,
+        student.parentIsDivorced || null,
+        student.birthCertificateNo || null,
+        student.birthregistryOffice || null,
+        student.noOfSibilings || null,
+        student.noOfSibilingWhoStudy || null,
+        student.siblingsStudentId || null,
+        student.withWhom || null,
+        student.fatherId || null,
+        student.motherId || null,
+        student.guardianId || null,
+        student.Image || null,
+        student.medicalId || null,
+        student.previousSchool || null,
+        student.homeId || null,
+        student.transportId || null,
+        student.scholarshipId || null,
+        student.admissionDate || null,
+        student.permenantAdress || null,
+        student.GSName || null,
+        student.divisionNo || null,
+        student.divisionalSecretariat || null,
+        student.residentialAdress || null,
+        student.viberNumber || null,
+        student.isFartherAlive || null,
+        student.isMotherAlive || null
+      );
+
+      if (index !== studentData.length - 1) {
+          query += ',';
+      }
+  });
+console.log("query" ,query)
+  return { query, values };
+}
+
+
+export async function insertBulkStudents(students){
+  const { query, values } = generateQueryForBulkInsertOfStudents(students);
+  const result = await pool.query(query, values);
+  return result;
+}
+

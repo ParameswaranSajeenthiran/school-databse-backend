@@ -138,12 +138,12 @@ CREATE TABLE `staffs` (
 
 
 CREATE TABLE `OLResults` (
-  `id` int AUTO_INCREMENT, ,
+  `id` int AUTO_INCREMENT, 
   `studentId` int(11) NOT NULL,
   `year` varchar(255) NOT NULL,
   `indexNumber` varchar(255) NOT NULL,
   `grade` varchar(255) NOT NULL,
-  `status` tinyint(1) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (id),
@@ -158,14 +158,17 @@ CREATE TABLE `OLResults` (
 --
 
 CREATE TABLE `ALResults` (
-  `id` int(11) NOT NULL,
+  `id` int AUTO_INCREMENT,
   `studentId` int(11) NOT NULL,
   `year` varchar(255) NOT NULL,
   `indexNumber` varchar(255) NOT NULL,
   `grade` varchar(255) NOT NULL,
-  `status` tinyint(1) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (studentId) REFERENCES students(id)
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 

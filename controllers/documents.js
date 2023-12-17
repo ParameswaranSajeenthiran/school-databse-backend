@@ -67,7 +67,7 @@ export const _getAllDocuments = async (studentId) => {
 export const _updateDocument = async (studentID, body) => {
 
     try {
-        // const result = await updateDocument(studentID, body);
+        const result = await updateDocument(studentID, body);
         const result1= await deleteALResult(studentID);
         const result2= await deleteOLResult(studentID);
         const result3= await insertNewALResult(body.alSubjects ,studentID);
